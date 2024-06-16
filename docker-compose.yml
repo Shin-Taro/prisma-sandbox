@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sandbox01
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-container:/var/lib/postgresql/data
+      # - ./migrations:/docker-entrypoint-initdb.d
+
+  pgadmin:
+    image: dpage/pgadmin4:6.11
+    container_name: pgadmin-container
+    ports:
+      - 8080:80
+    volumes:
+      - pgadmin-container:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: example@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-container:
+    name: vpg
+  pgadmin-container:
+    name: vpga
