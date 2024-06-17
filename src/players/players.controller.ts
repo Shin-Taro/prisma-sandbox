@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { Prisma } from '@prisma/client';
 
@@ -7,7 +7,7 @@ export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
 
   @Get(':id')
-  async findPlayerById(id: string) {
+  async findPlayerById(@Param('id') id: string) {
     return this.playersService.player(id);
   }
 
