@@ -1,0 +1,14 @@
+### create player
+POST http://localhost:3030/players
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "player1"
+}
+
+### get all players
+GET http://localhost:3030/players
+
+### get player
+GET http://localhost:3030/players/
